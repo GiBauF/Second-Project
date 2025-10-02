@@ -13,6 +13,11 @@ def encrypt_character(char, key):
 
     #Convert character to a 0-25 index (A=0, B=1, etc.)
     original_index = ord(char) - start_char_value
+<<<<<<< HEAD
+=======
+
+    #Apply the shift and handle the wrap-around using the modulo operator (%)
+>>>>>>> aafbf67264625307625abef9f9aa5f02df99705a
     # The result must be between 0 and 25
     shifted_index = (original_index + key) % 26
 
