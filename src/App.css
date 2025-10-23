@@ -4,7 +4,36 @@
   padding: 2rem;
   text-align: center;
 }
+/*
+/* --- Password Strength Indicator ---
+*/
+.strength-indicator {
+  width: 100%;
+  margin-top: -10px; /* Pull it closer to the input */
+  margin-bottom: 10px;
+}
 
+.strength-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.strength-bar-fill {
+  height: 100%;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.strength-label {
+  display: block;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 500;
+  height: 1.2em; /* Reserve space so form doesn't jump */
+  margin-top: 2px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

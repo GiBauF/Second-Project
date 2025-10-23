@@ -17,7 +17,96 @@ apiClient.interceptors.request.use(config => {
   return Promise.reject(error);
 });
 
+const calculatePasswordStrength = (password) => {
+  let score = 0;
+  let label = '';
+  let color = '#ddd'; // Default gray
 
+  if (!password) {
+    return { score: 0, label: '', color: 'transparent' };
+  }
+
+  // Criteria
+  const lengthCriteria = password.length >= 8;
+  const longLengthCriteria = password.length >= 12;
+  const hasUpper = /[A-Z]/.test(password);
+  const hasLower = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+  // Calculate score (0-5)
+  if (lengthCriteria) score++;
+  if (longLengthCriteria) score++;
+  if (hasUpper) score++;
+  if (hasLower) score++; // We check this to ensure a mix, but a password will almost always have one.
+  if (hasNumber) score++;
+  if (hasSymbol) score++;
+
+  // Adjust score for very short passwords
+  if (password.length > 0 && password.length < 8) {
+    score = 1;
+  }
+
+  // Determine label and color based on score
+  switch (score) {
+    case 0:
+      label = '';
+      color = 'transparent';
+      break;
+    case 1:
+      label = 'Very Weak';
+      color = '#e74c3c'; // red
+      break;
+    case 2:
+      label = 'Weak';
+      color = '#f39c12'; // orange
+      break;
+    case 3:
+      label = 'Medium';
+      color = '#f1c40f'; // yellow
+      break;
+    case 4:
+      label = 'Strong';
+      color = '#2ecc71'; // light green
+      break;
+    case 5:
+    case 6: // Max score
+      label = 'Very Strong';
+      color = '#27ae60'; // dark green
+      score = 5; // Cap score at 5 for bar width
+      break;
+    default:
+      label = '';
+      color = 'transparent';
+  }
+  
+  // Return as an object
+  // We use score / 5 for a 0-100% width (0, 20, 40, 60, 80, 100%)
+  return { width: (score / 5) * 100, label, color };
+};
+
+const PasswordStrengthIndicator = ({ password }) => {
+  const { width, label, color } = calculatePasswordStrength(password);
+
+  if (!password) {
+    return null; // Don't show anything if password is empty
+  }
+
+  return (
+    <div className="strength-indicator">
+      <div className="strength-bar">
+        <div 
+          className="strength-bar-fill" 
+          style={{ width: `${width}%`, backgroundColor: color }}
+        >
+        </div>
+      </div>
+      <span className="strength-label" style={{ color: color }}>
+        {label}
+      </span>
+    </div>
+  );
+};
 
 function App() {
   // State for authentication
@@ -158,6 +247,7 @@ function App() {
           <input type="text" placeholder="Website (e.g., Google)" value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} required />
           <input type="text" placeholder="Username / Email" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} required />
           <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+          <PasswordStrengthIndicator password={newPassword} />
           <button type="submit">Add Item</button>
         </form>
 
