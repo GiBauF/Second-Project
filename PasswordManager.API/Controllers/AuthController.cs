@@ -6,18 +6,8 @@ using PasswordManager.API.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using PasswordManager.API.Dtos;
 
-public class RegisterDto
-{
-    public required string Email { get; set; }
-    public required string Password { get; set; }
-}
-
-public class LoginDto
-{
-    public required string Email { get; set; }
-    public required string Password { get; set; }
-}
 
 [ApiController]
 [Route("api/[controller]")]
