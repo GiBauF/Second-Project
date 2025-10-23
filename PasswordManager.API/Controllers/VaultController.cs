@@ -56,17 +56,17 @@ namespace PasswordManager.API.Controllers
         {
             var userId = GetCurrentUserID();
 
-            var items = await _context.PasswordVaults
+            var dbItems = await _context.PasswordVaults
                 .Where(v => v.UserID == userId)
-                .Select(v => new VaultItemDto
-                {
-                    VaultID = v.VaultID,
-                    WebsiteName = v.WebsiteName,
-                    WebsiteURL = v.WebsiteURL,
-                    Username = v.Username,
-                    Password = Decrypt(v.EncryptedPassword) 
-                })
                 .ToListAsync();
+            var items = dbItems.Select(v => new VaultItemDto
+            {
+                VaultID = v.VaultID,
+                WebsiteName = v.WebsiteName,
+                WebsiteURL = v.WebsiteURL,
+                Username = v.Username,
+                Password = Decrypt(v.EncryptedPassword) 
+            });
 
             return Ok(items);
         }
