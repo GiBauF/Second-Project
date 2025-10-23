@@ -157,7 +157,7 @@ function App() {
           <h3>Add New Password</h3>
           <input type="text" placeholder="Website (e.g., Google)" value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)} required />
           <input type="text" placeholder="Username / Email" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} required />
-          <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.g.target.value)} required />
+          <input type="password" placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
           <button type="submit">Add Item</button>
         </form>
 
