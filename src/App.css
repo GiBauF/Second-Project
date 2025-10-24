@@ -9,7 +9,7 @@
 */
 .strength-indicator {
   width: 100%;
-  margin-top: -10px; /* Pull it closer to the input */
+  margin-top: -10px; 
   margin-bottom: 10px;
 }
 
@@ -31,7 +31,7 @@
   text-align: right;
   font-size: 0.8rem;
   font-weight: 500;
-  height: 1.2em; /* Reserve space so form doesn't jump */
+  height: 1.2em; 
   margin-top: 2px;
 }
 .logo {
@@ -45,6 +45,116 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.generate-btn {
+  border: 1px solid #ccc;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+
+  
+  border-left: 0;
+  border-top-left-radius: 0; 
+  border-bottom-left-radius: 0; 
+  border-radius: 0 4px 4px 0; 
+
+  
+  height: 40px; 
+  box-sizing: border-box; 
+
+  
+  background-color: black;
+  color: white;
+}
+
+.generate-btn:hover {
+  background-color: #333; 
+}
+
+.toggle-pw-btn {
+  border: 1px solid #ccc;
+  border-left: none; 
+  border-right: none; 
+  padding: 0 10px;
+  cursor: pointer;
+  height: 40px; 
+  box-sizing: border-box;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px; 
+
+  
+  background-color: black;
+  color: white;
+  border-radius: 0; 
+}
+
+.toggle-pw-btn:hover {
+  background-color: #333; 
+}
+
+.password-input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-input-container input {
+  flex-grow: 1;
+  width: auto;
+  margin-bottom: 0;
+  border-radius: 4px 0 0 4px; 
+  border-right: none; 
+}
+
+
+.password-input-container .generate-btn {
+ border-left: none; 
+}
+
+.revealed-password-area {
+  margin-top: 5px;
+  padding: 8px;
+  background-color: #f0f0f0; 
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-break: break-all; 
+}
+
+.revealed-password-text {
+  font-family: monospace; 
+  color: #333;
+  margin-right: 10px;
+}
+
+.copy-btn {
+  padding: 4px 8px;
+  font-size: 0.8em;
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  white-space: nowrap; 
+}
+
+.copy-btn:hover {
+  background-color: #777;
+}
+
+.copy-btn.copied {
+  background-color: #27ae60; 
+  cursor: default;
+}
+
+
+.item-buttons {
+  margin-top: 10px;
 }
 
 @keyframes logo-spin {
